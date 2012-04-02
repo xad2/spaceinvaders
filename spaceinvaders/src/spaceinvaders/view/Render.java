@@ -43,7 +43,7 @@ public class Render {
 	}
 
 	private void draw(Alien alien) {
-		Rectangle rect = toRectangle(toScreen.mul(alien.getPosition()));
+		Rectangle rect = toRectangle(toScreen.leftMul(alien.getPosition()));
 		Color color = new Color(disp, 0, 0, 255);
 		gc.setBackground(color);
 		gc.fillRectangle(rect);
@@ -51,7 +51,7 @@ public class Render {
 	}
 
 	private void draw(Ship ship) {
-		Rectangle rect = toRectangle(toScreen.mul(ship.getPosition()));
+		Rectangle rect = toRectangle(toScreen.leftMul(ship.getPosition()));
 		Color color = new Color(disp, 0, 255, 0);
 		gc.setBackground(color);
 		gc.fillRectangle(rect);
@@ -59,7 +59,7 @@ public class Render {
 	}
 
 	private void draw(World world) {
-		Rectangle rect = toRectangle(toScreen.mul(world.getTerrain()));
+		Rectangle rect = toRectangle(toScreen.leftMul(world.getTerrain()));
 		Color color = new Color(disp, 255, 255, 255);
 		gc.setBackground(color);
 		gc.fillRectangle(rect);
@@ -67,8 +67,8 @@ public class Render {
 	}
 
 	private Rectangle toRectangle(AABB2d aabb) {
-		return new Rectangle((int) Math.round(aabb.m_bl.m_x),
-				(int) Math.round(aabb.m_bl.m_y),
+		return new Rectangle((int) Math.round(aabb.bl.x),
+				(int) Math.round(aabb.bl.y),
 				(int) Math.round(aabb.width()), (int) Math.round(aabb.height()));
 	}
 

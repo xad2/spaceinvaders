@@ -2,30 +2,35 @@ package spaceinvaders.math;
 
 public class Point2d {
 
-	public double m_x;
-	public double m_y;
+	public double x;
+	public double y;
 	
 	public Point2d(double x, double y) {
-		m_x = x;
-		m_y = y;
+		this.x = x;
+		this.y = y;
 	}
 	
 	public Point2d(Point2d o) {
-		m_x = o.m_x;
-		m_y = o.m_y;
+		x = o.x;
+		y = o.y;
+	}
+
+	public Point2d() {
+		x = 0;
+		y = 0;
 	}
 
 	public Point2d add(double dx, double dy) {
-		m_x += dx;
-		m_y += dy;
+		x += dx;
+		y += dy;
 		return this;
 	}
 	
 	public Point2d add(Point2d o) {
-		return add(o.m_x, o.m_y);
+		return add(o.x, o.y);
 	}
 	
 	public double dot(Point2d o) {
-		return m_x * o.m_x + m_y * o.m_y;
+		return x * o.x + y * o.y;
 	}
 }

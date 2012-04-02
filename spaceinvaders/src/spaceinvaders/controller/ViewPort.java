@@ -38,7 +38,7 @@ public class ViewPort extends Observable {
 	}
 
 	public Point2d toScreen(Point2d p) {
-		return toScreen().mul(p);
+		return toScreen().leftMul(p);
 	}
 
 	public Matrix33 toScreen() {
@@ -48,7 +48,7 @@ public class ViewPort extends Observable {
 	private void updateTransform() {
 		double xscale = view.width() / model.width();
 		double yscale = view.height() / model.height();
-		toScreen = Matrix33.createScaleTranslationTransform(xscale, -yscale,
+		toScreen = Matrix33.createScaleAndTranslateTransform(xscale, -yscale,
 				0.f, view.height());
 	}
 
