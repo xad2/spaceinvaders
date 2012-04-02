@@ -30,7 +30,7 @@ public class GameView extends Canvas implements Observer {
 		this.gameController = gameController;
 		gameController.addObserver(this);
 
-		setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
+		//setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 
 		addPaintListener(paintHandler);
 		addKeyListener(keyHandler);
@@ -71,8 +71,7 @@ public class GameView extends Canvas implements Observer {
 		@Override
 		public void controlResized(ControlEvent e) {
 			Point viewSize = getSize();
-			gameController
-					.setViewSize(new AABB2d(0, 0, viewSize.x, viewSize.y));
+			gameController.setViewSize(new AABB2d(0, 0, viewSize.x, viewSize.y));
 		}
 	};
 

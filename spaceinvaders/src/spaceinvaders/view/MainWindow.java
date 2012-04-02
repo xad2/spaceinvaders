@@ -32,8 +32,7 @@ public class MainWindow extends ApplicationWindow {
 		parent.setSize(480, 640);
 		
 		GameView gv = new GameView(parent, gameController);
-		gv.setSize(480, 640);
-
+		
 		return parent;
 	}
 

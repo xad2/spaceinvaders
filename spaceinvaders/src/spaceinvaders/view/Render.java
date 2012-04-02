@@ -43,32 +43,28 @@ public class Render {
 	}
 
 	private void draw(Alien alien) {
-		Rectangle rect = toRectangle(toScreen.leftMul(alien.getPosition()));
-		Color color = new Color(disp, 0, 0, 255);
-		gc.setBackground(color);
-		gc.fillRectangle(rect);
-		color.dispose();
+		drawAABB2d(alien.getPosition(), new Color(disp, 0, 0, 255));
 	}
 
 	private void draw(Ship ship) {
-		Rectangle rect = toRectangle(toScreen.leftMul(ship.getPosition()));
-		Color color = new Color(disp, 0, 255, 0);
-		gc.setBackground(color);
-		gc.fillRectangle(rect);
-		color.dispose();
+		drawAABB2d(ship.getPosition(), new Color(disp, 0, 255, 0));
 	}
 
 	private void draw(World world) {
-		Rectangle rect = toRectangle(toScreen.leftMul(world.getTerrain()));
-		Color color = new Color(disp, 255, 255, 255);
-		gc.setBackground(color);
-		gc.fillRectangle(rect);
-		color.dispose();
+		drawAABB2d(world.getLimits(), new Color(disp, 0, 0, 0));
+		drawAABB2d(world.getTerrain(), new Color(disp, 255, 0, 0));
 	}
 
+	private void drawAABB2d(AABB2d rect, Color color) {
+		Rectangle r = toRectangle(toScreen.leftMul(rect));
+		gc.setBackground(color);
+		gc.fillRectangle(r);
+		color.dispose();
+	}
+	
 	private Rectangle toRectangle(AABB2d aabb) {
-		return new Rectangle((int) Math.round(aabb.bl.x),
-				(int) Math.round(aabb.bl.y),
+		return new Rectangle((int) Math.round(aabb.min.x),
+				(int) Math.round(aabb.min.y),
 				(int) Math.round(aabb.width()), (int) Math.round(aabb.height()));
 	}
 

@@ -36,6 +36,13 @@ public class Matrix33 {
 		return this;
 	}
 	
+	public void set(int i, int j, double val) {
+		set(i * 3 + j, val);
+	}
+	
+	public void set(int ind, double val) {
+		data[ind] = val;
+	}
 	
 	/**
 	 * M = O * M
@@ -114,7 +121,7 @@ public class Matrix33 {
 	 * @return
 	 */
 	public AABB2d leftMul(AABB2d r) {
-		return new AABB2d(leftMul(r.bl), leftMul(r.tr));
+		return new AABB2d(leftMul(r.min), leftMul(r.max));
 	}
 	
 	public Matrix33 inverse() throws Exception
