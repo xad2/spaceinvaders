@@ -53,6 +53,10 @@ public class ViewPort extends Observable {
 	}
 
 	private void updateTransform() {
+		
+		Point2d mcenter = model.center();
+		Point2d vcenter = view.center();
+		
 //	    // tl, tr, br, bl
 	    Point2d mtl = new Point2d(model.min.x, model.max.y);
 	    Point2d mtr = model.max;
@@ -60,11 +64,11 @@ public class ViewPort extends Observable {
 	    Point2d mbl = model.min;
 	    Point2d src[] = { mtl, mtr, mbr, mbl };
 	    
-	    Point2d vtl = new Point2d(view.min).add(100, -50);
-	    Point2d vtr = new Point2d(view.max.x, view.min.y).add(100, -50);
+	    Point2d vtl = new Point2d(view.min);
+	    Point2d vtr = new Point2d(view.max.x, view.min.y);
 	    Point2d vbr = new Point2d(view.max);
 	    Point2d vbl = new Point2d(view.min.x, view.max.y);
-	    Point2d dst[] = { vtl, vtr, vbr, vbl};
+	    Point2d dst[] = { vtl, vtr, vbr, vbl };
 
 	    toScreen = computeHomography(src, dst);
 	    fromScreen = computeHomography(dst, src); //could call toScreen.inverse()

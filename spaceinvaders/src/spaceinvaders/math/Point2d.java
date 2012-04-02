@@ -33,4 +33,24 @@ public class Point2d {
 	public double dot(Point2d o) {
 		return x * o.x + y * o.y;
 	}
+
+	public Point2d sub(Point2d o) {
+		x -= o.x;
+		y -= o.y;
+		return this;
+	}
+
+	public Point2d mul(double val) {
+		x *= val;
+		y *= val;
+		return this;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		Point2d other = (Point2d)obj;
+		/// TODO Might want to epsilon check this
+		return x == other.x && y == other.y;
+	}
+
 }

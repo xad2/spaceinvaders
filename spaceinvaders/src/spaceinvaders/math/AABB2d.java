@@ -20,6 +20,10 @@ public class AABB2d {
 		max = new Point2d(other.max);
 	}
 
+	public Point2d center() {
+		return new Point2d(max).sub(min).mul(0.5);
+	}
+	
 	public double area() {
 		return (max.x - min.x) * (max.y - min.y);
 	}
@@ -32,9 +36,10 @@ public class AABB2d {
 		return max.x - min.x;
 	}
 
-	public void move(double dx, double dy) {
+	public AABB2d move(double dx, double dy) {
 		min.add(dx, dy);
 		max.add(dx, dy);
+		return this;
 	}
 
 	public boolean contains(AABB2d other) {

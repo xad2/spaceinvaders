@@ -45,4 +45,8 @@ public class Ship extends Observable {
 		AABB2d terrain = world.getTerrain();
 		move(terrain.width() / 2., terrain.height() + 5.);
 	}
+
+	public void shoot() {
+		new Shoot(world, getPosition(), Shoot.FROM_SHIP);
+	}
 }

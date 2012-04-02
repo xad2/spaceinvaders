@@ -70,8 +70,10 @@ public class GameView extends Canvas implements Observer {
 	ControlAdapter resizeHandler = new ControlAdapter() {
 		@Override
 		public void controlResized(ControlEvent e) {
-			Point viewSize = getSize();
-			gameController.setViewSize(new AABB2d(0, 0, viewSize.x, viewSize.y));
+//			Point viewSize = getSize();
+//			gameController.setViewSize(new AABB2d(0, 0, viewSize.x, viewSize.y));
+			gameController.setViewSize(new AABB2d(0, 0, 240, 320));
+
 		}
 	};
 

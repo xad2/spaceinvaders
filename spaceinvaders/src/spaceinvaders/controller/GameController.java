@@ -22,9 +22,7 @@ public class GameController extends Observable implements Observer {
 	public GameController() {
 		super();
 		game = new Game();
-		game.getWorld().addObserver(this);
-		game.getShip().addObserver(this);
-		game.getAlienFleet().addObserver(this);
+		game.addObserver(this);
 		
 		viewPort = new ViewPort();
 		viewPort.setModel(game.getWorld().getLimits());
@@ -36,11 +34,11 @@ public class GameController extends Observable implements Observer {
 	}
 	
 	public Ship getShip() {
-		return game.getShip();
+		return getWorld().getShip();
 	}
 	
 	public AlienFleet getAlienFleet() {
-		return game.getAlienFleet();
+		return getWorld().getAlienFleet();
 	}
 	
 	public ViewPort getViewPort() {
@@ -59,10 +57,10 @@ public class GameController extends Observable implements Observer {
 	public void keyEvent(int keyCode) {
 		switch(keyCode)
 		{
-		case ARROW_RIGHT: game.receiveMoveAction(Game.RIGHT); break;
-		case ARROW_LEFT: game.receiveMoveAction(Game.LEFT); break;
-		case ARROW_DOWN: System.out.println("received down"); break;
-		case ARROW_UP: System.out.println("received up"); break;
+		case ARROW_RIGHT: game.moveShipToTheLeft(); break;
+		case ARROW_LEFT: game.moveShipToTheRight(); break;
+		case ARROW_UP: game.shoot(); break;
+		case ARROW_DOWN: break;
 		}
 	}
 
@@ -76,7 +74,7 @@ public class GameController extends Observable implements Observer {
 		int loops = 0;
 		while (System.currentTimeMillis() > nextGameTick && loops < MAX_FRAMESKIP) 
 		{
-			game.updateState();
+			game.receiveTick();
 			nextGameTick += SKIP_TICKS;
 			loops++;
 		}

@@ -1,5 +1,7 @@
 package spaceinvaders.view;
 
+import java.util.Collection;
+
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Rectangle;
@@ -11,6 +13,7 @@ import spaceinvaders.math.Matrix33;
 import spaceinvaders.model.Alien;
 import spaceinvaders.model.AlienFleet;
 import spaceinvaders.model.Ship;
+import spaceinvaders.model.Shoot;
 import spaceinvaders.model.World;
 
 public class Render {
@@ -53,6 +56,16 @@ public class Render {
 	private void draw(World world) {
 		drawAABB2d(world.getLimits(), new Color(disp, 0, 0, 0));
 		drawAABB2d(world.getTerrain(), new Color(disp, 255, 0, 0));
+		
+		Collection<Shoot> shoots = world.getShoots();
+		
+		for (Shoot shoot : shoots) {
+			drawShoot(shoot);
+		}
+	}
+
+	private void drawShoot(Shoot shoot) {
+		drawAABB2d(shoot.getPosition(), new Color(disp, 0, 255, 255));
 	}
 
 	private void drawAABB2d(AABB2d rect, Color color) {
