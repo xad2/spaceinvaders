@@ -74,8 +74,7 @@ public class World extends Observable {
 	}
 
 	public void shoot() {
-		Shoot shoot = new Shoot(this, ship.getPosition(), Shoot.FROM_SHIP);
-		shoots.add(shoot);
+		shoots.add(new Shoot(this, ship.getPosition(), Shoot.FROM_SHIP));
 	}
 
 	public void moveAlienFleet() {

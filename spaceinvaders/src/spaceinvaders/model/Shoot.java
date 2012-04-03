@@ -43,6 +43,4 @@ public class Shoot {
 		setPosition(candidatePos);
 		return true;
 	}
-	
-	public boolean
 }
